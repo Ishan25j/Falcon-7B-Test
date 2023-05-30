@@ -10,7 +10,7 @@ Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was bu
 This model was fine-tuned in 8-bit using 🤗 [peft](https://github.com/huggingface/peft) adapters, [transformers](https://github.com/huggingface/transformers), and [bitsandbytes](https://github.com/TimDettmers/bitsandbytes).
 - The training relied on a recent method called "Low Rank Adapters" ([LoRA](https://arxiv.org/pdf/2106.09685.pdf)), instead of fine-tuning the entire model you just have to fine-tune adapters and load them properly inside the model. 
 - Training took approximately 6 hours and was executed on a workstation with a single NVIDIA A100-SXM 40GB GPU (via Google Colab).
-- See attached [Notebook](https://huggingface.co/intellio-NLP/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
+- See attached [Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
 
 ## Model Summary
 
@@ -92,11 +92,6 @@ We recommend users of this model to develop guardrails and to take appropriate p
 import torch
 from peft import PeftModel, PeftConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer
-
-# Login to HF
-from huggingface_hub import notebook_login
-
-notebook_login()  # use personal HF token for access to intellio-nlp
 ```
 
 ### GPU Inference in 8-bit
@@ -105,7 +100,7 @@ This requires a GPU with at least 12GB memory.
 
 ```python
 # load the model
-peft_model_id = "intellio-NLP/falcon-7b-chat-oasst1"
+peft_model_id = "dfurman/falcon-7b-chat-oasst1"
 config = PeftConfig.from_pretrained(peft_model_id)
 
 model = AutoModelForCausalLM.from_pretrained(
@@ -153,7 +148,7 @@ print('\n\n', tokenizer.decode(output_tokens[0], skip_special_tokens=True))
 
 ## Reproducibility
 
-- See attached [Notebook](https://huggingface.co/intellio-NLP/falcon-40b-chat-oasst1/blob/main/finetune_falcon40b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
+- See attached [Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
 
 ### CUDA Info
 
