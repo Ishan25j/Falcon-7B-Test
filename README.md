@@ -134,7 +134,7 @@ model = PeftModel.from_pretrained(model, peft_model_id)
 
 ```python
 # run the model
-prompt = """<human>: My name is Daniel. Write a long email to my closest friends inviting them to come to my home on Friday for a dinner party, I will make the food but tell them to BYOB.
+prompt = """<human>: My name is Daniel. Write a short email to my closest friends inviting them to come to my home on Friday for a dinner party, I will make the food but tell them to BYOB.
 <bot>:"""
 
 batch = tokenizer(
