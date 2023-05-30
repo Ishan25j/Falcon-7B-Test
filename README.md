@@ -35,14 +35,12 @@ To prompt the chat model, use the following format:
 ### Example Dialogue
 
 **Prompter**:
-
 ```
 """<human>: My name is Daniel. Write a short email to my closest friends inviting them to come to my home on Friday for a dinner party, I will make the food but tell them to BYOB.
 <bot>:"""
 ```
 
 **Falcon-7b-chat-oasst1**:
-
 ```
 Dear friends,
 
@@ -56,12 +54,25 @@ Daniel
 
 **Prompter**:
 ```
-<human>: Create a list of things to do in San Francisco.\n
+<human>: Create a list of five things to do in San Francisco.\n
 <bot>:
 ```
 
 **Falcon-7b-chat-oasst1**:
->Coming
+```
+Here are four things to do in San Francisco:
+
+1. Visit the Golden Gate Bridge: The Golden Gate Bridge is one of the most iconic landmarks in the world and is a must-see for any visitor to San Francisco. The bridge spans 1.7 miles and offers stunning views of the city and the Pacific Ocean.
+
+2. Explore Chinatown: San Francisco's Chinatown is one of the largest Chinatowns in the world and is a great place to experience the culture and history of the Chinese community in the city. The area is full of shops, restaurants, and cultural attractions.
+
+3. Visit Alcatraz Island: Alcatraz Island is a former prison and now a national park. The island is home to a variety of wildlife and offers stunning views of the San Francisco Bay.
+
+4. Take a cable car ride: San Francisco's cable cars are a classic way to get around the city and offer a unique experience. The cars run on a cable system that was first installed in 1873 and is still in use today.
+
+These are just a few of the many things to do in San Francisco. For more ideas, check out the official tourism website for the city.
+```
+
 
 ### Direct Use
 
@@ -159,9 +170,9 @@ print('\n\n', tokenizer.decode(output_tokens[0], skip_special_tokens=True))
 
 ### Package Versions Employed
 
-- `torch`==2.0.1+cu118
-- `transformers`==4.30.0.dev0
-- `peft`==0.4.0.dev0
-- `accelerate`==0.19.0
-- `bitsandbytes`==0.39.0
-- `einops`==0.6.1
+- `torch`: 2.0.1+cu118
+- `transformers`: 4.30.0.dev0
+- `peft`: 0.4.0.dev0
+- `accelerate`: 0.19.0
+- `bitsandbytes`: 0.39.0
+- `einops`: 0.6.1
