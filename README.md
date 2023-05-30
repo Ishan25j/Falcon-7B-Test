@@ -33,7 +33,7 @@ To prompt the chat model, use the following format:
 <bot>:
 ```
 
-### Example Dialogue
+### Example Dialogue 1
 
 **Prompter**:
 ```
@@ -52,6 +52,8 @@ Please let me know if you can make it and if you have any dietary restrictions I
 Best,
 Daniel
 ```
+
+### Example Dialogue 2
 
 **Prompter**:
 ```
