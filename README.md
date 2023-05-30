@@ -121,8 +121,7 @@ model = AutoModelForCausalLM.from_pretrained(
     config.base_model_name_or_path, 
     return_dict=True, 
     load_in_8bit=True, 
-    device_map="auto",
-    use_auth_token=True,
+    device_map={"":0},
     trust_remote_code=True,
 )
 
