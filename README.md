@@ -57,7 +57,7 @@ Daniel
 
 **Prompter**:
 ```
-<human>: Create a list of five things to do in San Francisco.\n
+<human>: Create a list of four things to do in San Francisco.
 <bot>:
 ```
 
