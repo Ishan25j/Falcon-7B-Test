@@ -9,7 +9,7 @@ pipeline_tag: text-generation
 Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was built by fine-tuning [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) on the [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) dataset. 
 This model was fine-tuned in 8-bit using 🤗 [peft](https://github.com/huggingface/peft) adapters, [transformers](https://github.com/huggingface/transformers), and [bitsandbytes](https://github.com/TimDettmers/bitsandbytes).
 - The training relied on a recent method called "Low Rank Adapters" ([LoRA](https://arxiv.org/pdf/2106.09685.pdf)), instead of fine-tuning the entire model you just have to fine-tune adapters and load them properly inside the model. 
-- Training took approximately 6 hours and was executed on a workstation with a single NVIDIA A100-SXM 40GB GPU (via Google Colab).
+- Training took approximately 6.25 hours and was executed on a workstation with a single A100-SXM NVIDIA GPU with 37 GB of available memory (via Google Colab).
 - See attached [Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
 
 ## Model Summary
