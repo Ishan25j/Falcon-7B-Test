@@ -46,7 +46,14 @@ To prompt the chat model, use the following format:
 
 **Falcon-7b-chat-oasst1**:
 ```
-[coming]
+Dear friends,
+
+I am so excited to host a dinner party at my home this Friday! I will be making a delicious meal, but I would love for you to bring your favorite bottle of wine to share with everyone.
+
+Please let me know if you can make it and if you have any dietary restrictions I should be aware of. I look forward to seeing you soon!
+
+Best,
+Daniel
 ```
 
 ### Example Dialogue 2
@@ -59,7 +66,17 @@ To prompt the chat model, use the following format:
 
 **Falcon-7b-chat-oasst1**:
 ```
-[coming]
+Here are four things to do in San Francisco:
+
+1. Visit the Golden Gate Bridge: The Golden Gate Bridge is one of the most iconic landmarks in the world and is a must-see for any visitor to San Francisco. The bridge offers stunning views of the city and the Pacific Ocean, and there are plenty of opportunities for photos and sightseeing along the way.
+
+2. Explore Chinatown: San Francisco's Chinatown is one of the oldest and most vibrant Chinatowns in the world, and it's a great place to explore the city's Chinese culture and history. You can wander the streets, sample the local cuisine, and visit the many shops and markets.
+
+3. Visit Alcatraz Island: Alcatraz Island is a former prison and military fort located in the middle of San Francisco Bay. The island is now a popular tourist attraction and offers guided tours that take visitors through the prison cells and other historic buildings.
+
+4. Take a cable car ride: San Francisco's cable cars are a classic tourist attraction and offer a unique way to explore the city. The cars run along several routes and offer stunning views of the city and the surrounding area.
+
+These are just a few of the many things to do in San Francisco. There are plenty of other activities, sights, and attractions to explore, so be sure to do your research and plan your trip accordingly.
 ```
 
 ### Direct Use
@@ -138,8 +155,9 @@ with torch.cuda.amp.autocast():
         eos_token_id=tokenizer.eos_token_id,
     )
 
-# Inspect outputs
-print('\n\n', tokenizer.decode(output_tokens[0], skip_special_tokens=True))
+generated_text = tokenizer.decode(output_tokens[0], skip_special_tokens=True)
+# Inspect message response in the outputs
+print(generated_text.split("<human>: ")[1].split("<bot>: ")[-1])
 ```
 
 ## Reproducibility
