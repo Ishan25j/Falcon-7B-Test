@@ -149,16 +149,16 @@ with torch.cuda.amp.autocast():
 print('\n\n', tokenizer.decode(output_tokens[0], skip_special_tokens=True))
 ```
 
-## Reproducibility
-
-- See attached [Colab Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
-
-### CUDA Info
+### Training Procedure
 
 - CUDA Version: 12.0
-- GPU Name: NVIDIA A100-SXM
+- Hardware: 1 A100-SXM
 - Max Memory: {0: "37GB"}
 - Device Map: {"": 0}
+- Optimizer: paged_adamw_8bit
+- Gradient Accumulations: 4
+- Dataset Size: 9823 conversation trees
+- Learning Rate: 2e-5
 
 ### Package Versions Employed
 
