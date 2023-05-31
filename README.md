@@ -149,6 +149,10 @@ with torch.cuda.amp.autocast():
 print('\n\n', tokenizer.decode(output_tokens[0], skip_special_tokens=True))
 ```
 
+## Reproducibility
+
+See attached [Colab Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
+
 ### CUDA Info
 
 - CUDA Version: 12.0
