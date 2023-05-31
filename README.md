@@ -2,7 +2,7 @@
 datasets:
 - OpenAssistant/oasst1
 pipeline_tag: text-generation
-license: tii-falcon-llm
+license: apache-2.0
 ---
 
 # 🚀 Falcon-7b-chat-oasst1
@@ -13,9 +13,9 @@ Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was bu
 
 - **Model Type:** Causal decoder-only
 - **Language(s):** English
-- **Base Model:** [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) (License: [TII Falcon LLM License](https://huggingface.co/tiiuae/falcon-7b#license))
+- **Base Model:** [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) (License: [Apache 2.0](https://huggingface.co/tiiuae/falcon-7b#license))
 - **Dataset:** [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) (License: [Apache 2.0](https://huggingface.co/datasets/OpenAssistant/oasst1/blob/main/LICENSE))
-- **License(s):** Inherited from "Base Model" and "Dataset"
+- **License(s):** Apache 2.0 Inherited from "Base Model" and "Dataset"
 
 ## Model Details
 
