@@ -149,16 +149,12 @@ with torch.cuda.amp.autocast():
 print('\n\n', tokenizer.decode(output_tokens[0], skip_special_tokens=True))
 ```
 
-### Training Procedure
+### CUDA Info
 
 - CUDA Version: 12.0
 - Hardware: 1 A100-SXM
 - Max Memory: {0: "37GB"}
 - Device Map: {"": 0}
-- Optimizer: paged_adamw_8bit
-- Gradient Accumulations: 4
-- Dataset Size: 9823 conversation trees
-- Learning Rate: 2e-5
 
 ### Package Versions Employed
 
