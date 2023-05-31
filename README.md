@@ -7,10 +7,6 @@ pipeline_tag: text-generation
 # Falcon-7b-chat-oasst1
 
 Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was built by fine-tuning [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) on the [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) dataset. 
-- The model was fine-tuned in 4-bit precision using `peft`, `transformers`, and `bitsandbytes`.
-- The training relied on a method called "Low Rank Adapters" ([LoRA](https://arxiv.org/pdf/2106.09685.pdf)), specifically the [QLoRA](https://arxiv.org/abs/2305.14314) variant.
-- Fine-tuning took approximately 6 hours and was executed on a workstation with a single A100-SXM NVIDIA GPU, with 37 GB of available memory
-- See attached [Colab Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code and hyperparams used to train the model. 
 
 ## Model Summary
 
@@ -19,6 +15,13 @@ Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was bu
 - **Base Model:** [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) (License: [TII Falcon LLM License](https://huggingface.co/tiiuae/falcon-7b#license), commercial use ok-ed)
 - **Dataset:** [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) (License: [Apache 2.0](https://huggingface.co/datasets/OpenAssistant/oasst1/blob/main/LICENSE), commercial use ok-ed)
 - **License:** Inherited from the above "Base Model" and "Dataset"
+
+## Model Details
+
+- The model was fine-tuned in 4-bit precision using 🤗 `peft` adapters, `transformers`, and `bitsandbytes`.
+- Training relied on a method called "Low Rank Adapters" ([LoRA](https://arxiv.org/pdf/2106.09685.pdf)), specifically the [QLoRA](https://arxiv.org/abs/2305.14314) variant.
+- The run took approximately 3 hours and was executed on a workstation with a single A100-SXM NVIDIA GPU with 37 GB of available memory
+- See attached [Colab Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code and hyperparams used to train the model. 
 
 ### Model Date
 
