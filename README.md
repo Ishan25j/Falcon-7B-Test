@@ -19,7 +19,7 @@ Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was bu
 
 ## Model Details
 
-The model was fine-tuned in 8-bit precision using 🤗 `peft` adapters, `transformers`, and `bitsandbytes`. Training relied on a method called "Low Rank Adapters" ([LoRA](https://arxiv.org/pdf/2106.09685.pdf)), specifically the [QLoRA](https://arxiv.org/abs/2305.14314) variant. The run took approximately 3 hours and was executed on a workstation with a single A100-SXM NVIDIA GPU with 37 GB of available memory. See attached [Colab Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code and hyperparams used to train the model. 
+The model was fine-tuned in 8-bit precision using 🤗 `peft` adapters, `transformers`, and `bitsandbytes`. Training relied on a method called "Low Rank Adapters" ([LoRA](https://arxiv.org/pdf/2106.09685.pdf)), specifically the [QLoRA](https://arxiv.org/abs/2305.14314) variant. The run took approximately 6.25 hours and was executed on a workstation with a single A100-SXM NVIDIA GPU with 37 GB of available memory. See attached [Colab Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code and hyperparams used to train the model. 
 
 ### Model Date
 
