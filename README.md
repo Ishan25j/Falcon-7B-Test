@@ -7,7 +7,7 @@ license: apache-2.0
 
 # 🚀 Falcon-7b-chat-oasst1
 
-Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was built by fine-tuning [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) on the [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) dataset. 
+Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was built by fine-tuning [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) on the [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) dataset. This repo only includes the LoRA adapters from fine-tuning with 🤗's [peft](https://github.com/huggingface/peft) package. 
 
 ## Model Summary
 
