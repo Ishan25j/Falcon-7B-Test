@@ -3,8 +3,6 @@ datasets:
 - OpenAssistant/oasst1
 pipeline_tag: text-generation
 license: tii-falcon-llm
-language:
-- en
 ---
 
 # 🚀 Falcon-7b-chat-oasst1
@@ -60,23 +58,24 @@ Daniel
 
 **Prompter**:
 ```
-<human>: Create a list of four things to do in San Francisco.
+<human>: Create a list of things to do in San Francisco.
 <bot>:
 ```
 
 **Falcon-7b-chat-oasst1**:
 ```
-Here are four things to do in San Francisco:
+Here are some things to do in San Francisco:
 
-1. Visit the Golden Gate Bridge: The Golden Gate Bridge is one of the most iconic landmarks in the world and is a must-see for any visitor to San Francisco. The bridge offers stunning views of the city and the Pacific Ocean, and there are plenty of opportunities for photos and sightseeing along the way.
-
-2. Explore Chinatown: San Francisco's Chinatown is one of the oldest and most vibrant Chinatowns in the world, and it's a great place to explore the city's Chinese culture and history. You can wander the streets, sample the local cuisine, and visit the many shops and markets.
-
-3. Visit Alcatraz Island: Alcatraz Island is a former prison and military fort located in the middle of San Francisco Bay. The island is now a popular tourist attraction and offers guided tours that take visitors through the prison cells and other historic buildings.
-
-4. Take a cable car ride: San Francisco's cable cars are a classic tourist attraction and offer a unique way to explore the city. The cars run along several routes and offer stunning views of the city and the surrounding area.
-
-These are just a few of the many things to do in San Francisco. There are plenty of other activities, sights, and attractions to explore, so be sure to do your research and plan your trip accordingly.
+1. Visit the Golden Gate Bridge
+2. Explore the city's many museums and art galleries
+3. Take a walk along the Embarcadero waterfront
+4. Enjoy the views from the top of Coit Tower
+5. Shop at Union Square and the Ferry Building
+6. Eat at one of the city's many restaurants and cafes
+7. Attend a sporting event at AT&T Park
+8. Visit the Castro District and the Mission District
+9. Take a day trip to Napa Valley or Muir Woods National Monument
+10. Explore the city's many parks and gardens
 ```
 
 ### Direct Use
@@ -110,6 +109,8 @@ We recommend users of this model to develop guardrails and to take appropriate p
 
 This requires a GPU with at least 12 GB of memory.
 
+### First, Load the Model
+
 ```python
 import torch
 from peft import PeftModel, PeftConfig
@@ -131,8 +132,11 @@ tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path)
 tokenizer.pad_token = tokenizer.eos_token
 
 model = PeftModel.from_pretrained(model, peft_model_id)
+```
 
-# run the model
+### Next, Run the Model
+
+```python
 prompt = """<human>: My name is Daniel. Write a short email to my closest friends inviting them to come to my home on Friday for a dinner party, I will make the food but tell them to BYOB.
 <bot>:"""
 
@@ -146,13 +150,17 @@ batch = batch.to('cuda:0')
 
 with torch.cuda.amp.autocast():
     output_tokens = model.generate(
-        input_ids = batch.input_ids, 
+        inputs=batch.input_ids, 
         max_new_tokens=200,
-        temperature=0.7,
-        top_p=0.7,
+        do_sample=False,
+        use_cache=True,
+        temperature=1.0,
+        top_k=50,
+        top_p=1.0,
         num_return_sequences=1,
         pad_token_id=tokenizer.eos_token_id,
         eos_token_id=tokenizer.eos_token_id,
+        bos_token_id=tokenizer.eos_token_id,
     )
 
 generated_text = tokenizer.decode(output_tokens[0], skip_special_tokens=True)
