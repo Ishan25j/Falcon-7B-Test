@@ -7,10 +7,10 @@ pipeline_tag: text-generation
 # Falcon-7b-chat-oasst1
 
 Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was built by fine-tuning [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) on the [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) dataset. 
-This model was fine-tuned in 8-bit using 🤗 [peft](https://github.com/huggingface/peft) adapters, [transformers](https://github.com/huggingface/transformers), and [bitsandbytes](https://github.com/TimDettmers/bitsandbytes).
-- The training relied on a recent method called "Low Rank Adapters" ([LoRA](https://arxiv.org/pdf/2106.09685.pdf)). Instead of fine-tuning the entire model you fine-tune lightweight adapters and load them inside the base model at inference. 
-- Training took approximately 6.25 hours and was executed on a workstation with a single A100-SXM NVIDIA GPU with 37 GB of available memory (via Google Colab).
-- See attached [Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
+- The model was fine-tuned in 4-bit precision using `peft`, `transformers`, and `bitsandbytes`.
+- The training relied on a method called "Low Rank Adapters" ([LoRA](https://arxiv.org/pdf/2106.09685.pdf)), specifically the [QLoRA](https://arxiv.org/abs/2305.14314) variant. Instead of fine-tuning the entire model you fine-tune lightweight adapters and load them inside the base model at inference.
+- Fine-tuning took approximately 10 hours and was executed on a workstation with a single A100-SXM NVIDIA GPU, with 37 GB of available memory
+- See attached [Colab Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code and hyperparams used to train the model. 
 
 ## Model Summary
 
@@ -43,14 +43,7 @@ To prompt the chat model, use the following format:
 
 **Falcon-7b-chat-oasst1**:
 ```
-Dear friends,
-
-I am so excited to host a dinner party at my home this Friday! I will be making a delicious meal, but I would love for you to bring your favorite bottle of wine to share with everyone.
-
-Please let me know if you can make it and if you have any dietary restrictions I should be aware of. I look forward to seeing you soon!
-
-Best,
-Daniel
+[coming]
 ```
 
 ### Example Dialogue 2
@@ -63,19 +56,8 @@ Daniel
 
 **Falcon-7b-chat-oasst1**:
 ```
-Here are four things to do in San Francisco:
-
-1. Visit the Golden Gate Bridge: The Golden Gate Bridge is one of the most iconic landmarks in the world and is a must-see for any visitor to San Francisco. The bridge spans 1.7 miles and offers stunning views of the city and the Pacific Ocean.
-
-2. Explore Chinatown: San Francisco's Chinatown is one of the largest Chinatowns in the world and is a great place to experience the culture and history of the Chinese community in the city. The area is full of shops, restaurants, and cultural attractions.
-
-3. Visit Alcatraz Island: Alcatraz Island is a former prison and now a national park. The island is home to a variety of wildlife and offers stunning views of the San Francisco Bay.
-
-4. Take a cable car ride: San Francisco's cable cars are a classic way to get around the city and offer a unique experience. The cars run on a cable system that was first installed in 1873 and is still in use today.
-
-These are just a few of the many things to do in San Francisco. For more ideas, check out the official tourism website for the city.
+[coming]
 ```
-
 
 ### Direct Use
 
@@ -97,30 +79,37 @@ We recommend users of this model to develop guardrails and to take appropriate p
 
 ### Setup
 ```python
-# Install and import packages
+# Install packages
 !pip install -q -U bitsandbytes loralib einops
 !pip install -q -U git+https://github.com/huggingface/transformers.git 
 !pip install -q -U git+https://github.com/huggingface/peft.git
 !pip install -q -U git+https://github.com/huggingface/accelerate.git
+```
 
+### GPU Inference in 4-bit
+
+This requires a GPU with at least XXGB of memory.
+
+```python
 import torch
 from peft import PeftModel, PeftConfig
 from transformers import AutoModelForCausalLM, AutoTokenizer
-```
 
-### GPU Inference in 8-bit
-
-This requires a GPU with at least 12GB memory.
-
-```python
 # load the model
 peft_model_id = "dfurman/falcon-7b-chat-oasst1"
 config = PeftConfig.from_pretrained(peft_model_id)
 
+bnb_config = BitsAndBytesConfig(
+    load_in_4bit=True,
+    bnb_4bit_use_double_quant=True,
+    bnb_4bit_quant_type="nf4",
+    bnb_4bit_compute_dtype=torch.bfloat16
+)
+
 model = AutoModelForCausalLM.from_pretrained(
-    config.base_model_name_or_path, 
-    return_dict=True, 
-    load_in_8bit=True, 
+    config.base_model_name_or_path,
+    return_dict=True,
+    quantization_config=bnb_config,
     device_map={"":0},
     trust_remote_code=True,
 )
@@ -129,9 +118,7 @@ tokenizer = AutoTokenizer.from_pretrained(config.base_model_name_or_path)
 tokenizer.pad_token = tokenizer.eos_token
 
 model = PeftModel.from_pretrained(model, peft_model_id)
-```
 
-```python
 # run the model
 prompt = """<human>: My name is Daniel. Write a short email to my closest friends inviting them to come to my home on Friday for a dinner party, I will make the food but tell them to BYOB.
 <bot>:"""
@@ -161,7 +148,7 @@ print('\n\n', tokenizer.decode(output_tokens[0], skip_special_tokens=True))
 
 ## Reproducibility
 
-- See attached [Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
+- See attached [Colab Notebook](https://huggingface.co/dfurman/falcon-7b-chat-oasst1/blob/main/finetune_falcon7b_oasst1_with_bnb_peft.ipynb) for the code (and hyperparams) used to train the model. 
 
 ### CUDA Info
 
