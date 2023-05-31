@@ -89,9 +89,9 @@ We recommend users of this model to develop guardrails and to take appropriate p
 !pip install -q -U git+https://github.com/huggingface/accelerate.git
 ```
 
-### GPU Inference in 4-bit
+### GPU Inference in 8-bit
 
-This requires a GPU with at least XXGB of memory.
+This requires a GPU with at least 12 GB of memory.
 
 ```python
 import torch
