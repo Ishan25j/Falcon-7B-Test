@@ -14,7 +14,7 @@ Falcon-7b-chat-oasst1 is a chatbot-like model for dialogue generation. It was bu
 - **Language(s):** English
 - **Base Model:** [Falcon-7B](https://huggingface.co/tiiuae/falcon-7b) (License: [TII Falcon LLM License](https://huggingface.co/tiiuae/falcon-7b#license))
 - **Dataset:** [OpenAssistant/oasst1](https://huggingface.co/datasets/OpenAssistant/oasst1) (License: [Apache 2.0](https://huggingface.co/datasets/OpenAssistant/oasst1/blob/main/LICENSE))
-- **License:** Inherited from the above "Base Model" and "Dataset"
+- **License(s):** Inherited from the above "Base Model" and "Dataset", respectively
 
 ## Model Details
 
